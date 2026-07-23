@@ -120,7 +120,8 @@ async function getDefaultWorker(): Promise<ConvertWorker> {
 export async function convertOnWorker(data: Uint8Array, format: Format): Promise<ConvertResult> {
   const t0 = performance.now();
   const worker = await getDefaultWorker();
-  const output = await worker.convert(data, format);
+  // Copy data to preserve the original — the worker transfer will detach the buffer
+  const output = await worker.convert(data.slice(0), format);
   const t1 = performance.now();
   return {
     output: output,
