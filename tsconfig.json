@@ -5,7 +5,8 @@
       "strict": true,
       "module": "commonjs",
       "allowJs": false,
-      "target": "es2015"
+      "target": "es2015",
+      "esModuleInterop": true
   },
   "exclude": [
     "woff2", "node_modules"

@@ -16,6 +16,7 @@
 import { Format, isValidFormat, getFilenameSuffix, getFontFormat } from './format';
 import { convertOnWorker } from './convertworker';
 import { Lang, t, setLang, getLang } from './i18n';
+import JSZip from 'jszip';
 
 async function fileToUint8Array(file: File): Promise<Uint8Array> {
   const fileReader = new FileReader();
@@ -127,8 +128,10 @@ class App {
   spinnerEl: Element;
   errorMessageEl: Element;
   langToggle: HTMLSelectElement;
+  downloadAllButton: HTMLButtonElement;
 
   selectedFiles: FileEntry[] = [];
+  conversionResults: Array<{basename: string; data: Uint8Array}> = [];
 
   constructor() {
     const inputFileEl = document.querySelector('#input-file');
@@ -173,6 +176,12 @@ class App {
     this.errorMessageEl = errorMessageEl;
     this.langToggle = langToggle;
 
+    const downloadBtn = document.querySelector('#download-all-button');
+    if (!(downloadBtn instanceof HTMLButtonElement)) {
+      throw new Error('No download-all-button element');
+    }
+    this.downloadAllButton = downloadBtn;
+
     this.convertButton.disabled = true;
 
     this.selectFileButton.addEventListener('click', async () => {
@@ -187,6 +196,10 @@ class App {
     this.langToggle.addEventListener('change', () => {
       setLang(this.langToggle.value as Lang);
       this.updateLanguage();
+    });
+
+    this.downloadAllButton.addEventListener('click', () => {
+      this.downloadAllAsZip();
     });
 
     // Initialize language display
@@ -223,6 +236,9 @@ class App {
     const issueLink = document.querySelector('#issue-link');
     if (issueLink) issueLink.textContent = t('reportIssue');
     this.setText('#footer-copyright', `${t('forkBy')} MeLi (Li Junjie) · ${t('originalBy')} Kenichi Ishibashi · ${t('license')}`);
+
+    // Download all button
+    this.downloadAllButton.textContent = t('downloadAll');
 
     // Re-render file list with current language
     this.renderFileList();
@@ -335,6 +351,8 @@ class App {
     }
 
     this.convertButton.disabled = true;
+    this.conversionResults = [];
+    this.downloadAllButton.classList.add('download-all-off');
 
     // Clear conversion status.
     this.convertResultEl.innerHTML = '';
@@ -384,6 +402,30 @@ class App {
     const basename = getBasename(entry.file.name);
     const link = createDownloadLink(basename, output);
     this.convertResultEl.appendChild(link);
+
+    // Track for ZIP download
+    this.conversionResults.push({ basename, data: output });
+    if (this.conversionResults.length > 1) {
+      this.downloadAllButton.classList.remove('download-all-off');
+    }
+  }
+
+  private async downloadAllAsZip() {
+    if (this.conversionResults.length < 2) return;
+
+    const zip = new JSZip();
+    for (const { basename, data } of this.conversionResults) {
+      const suffix = getFilenameSuffix(data);
+      zip.file(`${basename}.${suffix}`, data.buffer);
+    }
+
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'fonts.zip';
+    a.click();
+    URL.revokeObjectURL(url);
   }
 }
 

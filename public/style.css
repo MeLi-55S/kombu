@@ -564,6 +564,38 @@ main.container {
 }
 
 
+#download-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#download-all-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#download-all-button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+#download-all-button.download-all-off {
+  display: none;
+}
+
 /* ============================================
    Error Message
    ============================================ */

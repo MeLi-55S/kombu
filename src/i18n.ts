@@ -44,6 +44,7 @@ export interface I18nStrings {
   sizeComparison: string;
   processTime: string;
   download: string;
+  downloadAll: string;
   reportIssue: string;
   forkBy: string;
   originalBy: string;
@@ -70,6 +71,7 @@ const zh: I18nStrings = {
   sizeComparison: '大小对比',
   processTime: '处理耗时',
   download: '下载',
+  downloadAll: '全部打包下载 (ZIP)',
   reportIssue: '反馈问题',
   forkBy: 'Fork 维护',
   originalBy: '原作',
@@ -96,6 +98,7 @@ const en: I18nStrings = {
   sizeComparison: 'Size comparison',
   processTime: 'Process time',
   download: 'Download',
+  downloadAll: 'Download all (ZIP)',
   reportIssue: 'Report issue',
   forkBy: 'Fork by',
   originalBy: 'Original by',
@@ -122,6 +125,7 @@ const ja: I18nStrings = {
   sizeComparison: 'サイズ比較',
   processTime: '処理時間',
   download: 'ダウンロード',
+  downloadAll: 'すべて ZIP でダウンロード',
   reportIssue: '問題を報告',
   forkBy: 'Fork',
   originalBy: 'オリジナル作者',
@@ -148,6 +152,7 @@ const es: I18nStrings = {
   sizeComparison: 'Comparación de tamaño',
   processTime: 'Tiempo de proceso',
   download: 'Descargar',
+  downloadAll: 'Descargar todo (ZIP)',
   reportIssue: 'Reportar problema',
   forkBy: 'Fork por',
   originalBy: 'Original por',
@@ -174,6 +179,7 @@ const fr: I18nStrings = {
   sizeComparison: 'Comparaison de taille',
   processTime: 'Temps de traitement',
   download: 'Télécharger',
+  downloadAll: 'Tout télécharger (ZIP)',
   reportIssue: 'Signaler un problème',
   forkBy: 'Fork par',
   originalBy: 'Original par',
@@ -200,6 +206,7 @@ const de: I18nStrings = {
   sizeComparison: 'Größenvergleich',
   processTime: 'Verarbeitungszeit',
   download: 'Herunterladen',
+  downloadAll: 'Alle herunterladen (ZIP)',
   reportIssue: 'Problem melden',
   forkBy: 'Fork von',
   originalBy: 'Original von',
@@ -226,6 +233,7 @@ const pt: I18nStrings = {
   sizeComparison: 'Comparação de tamanho',
   processTime: 'Tempo de processamento',
   download: 'Baixar',
+  downloadAll: 'Baixar tudo (ZIP)',
   reportIssue: 'Reportar problema',
   forkBy: 'Fork por',
   originalBy: 'Original por',
@@ -252,6 +260,7 @@ const ko: I18nStrings = {
   sizeComparison: '크기 비교',
   processTime: '처리 시간',
   download: '다운로드',
+  downloadAll: '모두 ZIP으로 다운로드',
   reportIssue: '문제 신고',
   forkBy: 'Fork',
   originalBy: '원작자',
