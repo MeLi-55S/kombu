@@ -38,8 +38,9 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js','.tsx','.jsx'],
     fallback: {
-      fs: false, // 告诉 Webpack 在前端打包时忽略 Node 的 fs 模块
-      path: false, // 如果提示 path 报错也可以加上
+      fs: false,
+      path: false,
+      buffer: require.resolve('buffer/'),
     },
   },
   module: {
@@ -48,7 +49,10 @@ module.exports = {
   plugins: [
     new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
       resource.request = resource.request.replace(/^node:/, '');
-    }), 
+    }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
     new WorkboxPlugin.GenerateSW({
       swDest: path.resolve(__dirname, 'public/service-worker.js'),
       runtimeCaching: [
