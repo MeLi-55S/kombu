@@ -59,7 +59,7 @@ export interface I18nStrings {
 }
 
 const zh: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — 免费在线字体格式转换工具（TTF/OTF/WOFF/WOFF2 互转）',
   subtitle: '在 TTF / OTF / WOFF / WOFF2 之间互相转换字体，全程在浏览器本地完成，无需上传。',
   dropzoneLabel: '选择字体文件或将文件拖拽到这里',
   dropzoneHint: '支持 .ttf、.otf、.woff、.woff2 — 可一次选择多个文件',
@@ -87,7 +87,7 @@ const zh: I18nStrings = {
 };
 
 const en: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Free Online Font Format Converter (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Convert fonts between TTF / OTF / WOFF / WOFF2 — all in your browser, no upload needed.',
   dropzoneLabel: 'Choose fonts or drop them here',
   dropzoneHint: 'Supports .ttf, .otf, .woff, .woff2 — multiple files allowed',
@@ -115,7 +115,7 @@ const en: I18nStrings = {
 };
 
 const ja: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — 無料オンラインフォント形式変換ツール（TTF/OTF/WOFF/WOFF2）',
   subtitle: 'TTF / OTF / WOFF / WOFF2 形式のフォントを相互変換。ブラウザ内で完結し、アップロード不要。',
   dropzoneLabel: 'フォントファイルを選択するか、ここにドラッグ＆ドロップ',
   dropzoneHint: '対応形式: .ttf, .otf, .woff, .woff2 — 複数ファイル対応',
@@ -143,7 +143,7 @@ const ja: I18nStrings = {
 };
 
 const es: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Conversor Online Gratuito de Fuentes (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Convierte fuentes entre TTF / OTF / WOFF / WOFF2 — todo en tu navegador, sin necesidad de subir archivos.',
   dropzoneLabel: 'Selecciona archivos de fuente o arrástralos aquí',
   dropzoneHint: 'Soporta .ttf, .otf, .woff, .woff2 — múltiples archivos permitidos',
@@ -171,7 +171,7 @@ const es: I18nStrings = {
 };
 
 const fr: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Convertisseur de Polices en Ligne Gratuit (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Convertissez des polices entre TTF / OTF / WOFF / WOFF2 — tout dans votre navigateur, sans téléchargement.',
   dropzoneLabel: 'Choisissez des fichiers de police ou déposez-les ici',
   dropzoneHint: 'Prend en charge .ttf, .otf, .woff, .woff2 — plusieurs fichiers autorisés',
@@ -199,7 +199,7 @@ const fr: I18nStrings = {
 };
 
 const de: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Kostenloser Online Schriftarten Konverter (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Konvertieren Sie Schriftarten zwischen TTF / OTF / WOFF / WOFF2 — alles in Ihrem Browser, kein Upload nötig.',
   dropzoneLabel: 'Schriftartdateien auswählen oder hierher ziehen',
   dropzoneHint: 'Unterstützt .ttf, .otf, .woff, .woff2 — mehrere Dateien erlaubt',
@@ -227,7 +227,7 @@ const de: I18nStrings = {
 };
 
 const pt: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Conversor de Fontes Online Grátis (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Converta fontes entre TTF / OTF / WOFF / WOFF2 — tudo no seu navegador, sem necessidade de upload.',
   dropzoneLabel: 'Selecione arquivos de fonte ou arraste-os para cá',
   dropzoneHint: 'Suporta .ttf, .otf, .woff, .woff2 — múltiplos arquivos permitidos',
@@ -255,7 +255,7 @@ const pt: I18nStrings = {
 };
 
 const ko: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — 무료 온라인 폰트 형식 변환 도구（TTF/OTF/WOFF/WOFF2）',
   subtitle: 'TTF / OTF / WOFF / WOFF2 간 글꼴 변환 — 모두 브라우저에서 처리되며 업로드가 필요 없습니다.',
   dropzoneLabel: '글꼴 파일을 선택하거나 여기로 끌어다 놓으세요',
   dropzoneHint: '지원 형식: .ttf, .otf, .woff, .woff2 — 여러 파일 선택 가능',
