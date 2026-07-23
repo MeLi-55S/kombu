@@ -236,6 +236,8 @@ class App {
     const issueLink = document.querySelector('#issue-link');
     if (issueLink) issueLink.textContent = t('reportIssue');
     this.setText('#footer-copyright', `${t('forkBy')} MeLi (Li Junjie) · ${t('originalBy')} Kenichi Ishibashi · ${t('license')}`);
+    const blogEl = document.querySelector('#footer-blog');
+    if (blogEl) blogEl.innerHTML = t('blogLink');
 
     // Download all button
     this.downloadAllButton.textContent = t('downloadAll');

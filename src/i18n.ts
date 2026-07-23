@@ -55,6 +55,7 @@ export interface I18nStrings {
   file: string;
   formatLabel: string;
   sourceFormat: string;
+  blogLink: string;
 }
 
 const zh: I18nStrings = {
@@ -82,6 +83,7 @@ const zh: I18nStrings = {
   file: '文件',
   formatLabel: '格式',
   sourceFormat: '源格式',
+  blogLink: '不妨去看看站长的 <a href="https://blog.melichem.cn" target="_blank" rel="noopener">blog</a>！(blog.melichem.cn)',
 };
 
 const en: I18nStrings = {
@@ -109,6 +111,7 @@ const en: I18nStrings = {
   file: 'File',
   formatLabel: 'Format',
   sourceFormat: 'Source format',
+  blogLink: 'Check out the owner\'s <a href="https://blog.melichem.cn" target="_blank" rel="noopener">blog</a>! (blog.melichem.cn)',
 };
 
 const ja: I18nStrings = {
@@ -136,6 +139,7 @@ const ja: I18nStrings = {
   file: 'ファイル',
   formatLabel: '形式',
   sourceFormat: '元の形式',
+  blogLink: 'ブログも覗いてみてください！(blog.melichem.cn)',
 };
 
 const es: I18nStrings = {
@@ -163,6 +167,7 @@ const es: I18nStrings = {
   file: 'Archivo',
   formatLabel: 'Formato',
   sourceFormat: 'Formato origen',
+  blogLink: '¡También visita el blog del dueño! (blog.melichem.cn)',
 };
 
 const fr: I18nStrings = {
@@ -190,6 +195,7 @@ const fr: I18nStrings = {
   file: 'Fichier',
   formatLabel: 'Format',
   sourceFormat: 'Format source',
+  blogLink: 'Découvrez aussi le blog du propriétaire ! (blog.melichem.cn)',
 };
 
 const de: I18nStrings = {
@@ -216,6 +222,7 @@ const de: I18nStrings = {
   noValidFonts: 'Keine gültigen Schriftartdateien zum Konvertieren',
   file: 'Datei',
   formatLabel: 'Format',
+  blogLink: 'Schau auch im Blog des Betreibers vorbei! (blog.melichem.cn)',
   sourceFormat: 'Quellformat',
 };
 
@@ -242,6 +249,7 @@ const pt: I18nStrings = {
   unsupported: 'Não suportado',
   noValidFonts: 'Nenhum arquivo de fonte válido para converter',
   file: 'Arquivo',
+  blogLink: 'Confira também o blog do proprietário! (blog.melichem.cn)',
   formatLabel: 'Formato',
   sourceFormat: 'Formato original',
 };
@@ -268,6 +276,7 @@ const ko: I18nStrings = {
   detected: '감지됨',
   unsupported: '지원 안 함',
   noValidFonts: '변환할 수 있는 유효한 글꼴 파일이 없습니다',
+  blogLink: '블로그도 방문해보세요! (blog.melichem.cn)',
   file: '파일',
   formatLabel: '형식',
   sourceFormat: '원본 형식',

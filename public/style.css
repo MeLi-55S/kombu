@@ -658,6 +658,23 @@ footer.container {
   line-height: 1.6;
 }
 
+.footer-blog {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.footer-blog a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.footer-blog a:hover {
+  color: var(--color-primary-hover);
+}
+
 #version {
   color: var(--color-text-muted);
 }
