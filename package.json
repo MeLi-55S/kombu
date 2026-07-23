@@ -20,7 +20,9 @@
     "woff2"
   ],
   "author": "Kenichi Ishibashi <ishibashi.kenichi@gmail.com>",
-  "contributors": ["MeLi (Li Junjie)"],
+  "contributors": [
+    "MeLi (Li Junjie)"
+  ],
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/chai": "^4.1.4",
