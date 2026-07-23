@@ -83,7 +83,7 @@ const zh: I18nStrings = {
   file: '文件',
   formatLabel: '格式',
   sourceFormat: '源格式',
-  blogLink: '不妨去看看站长的 <a href="https://blog.melichem.cn" target="_blank" rel="noopener">blog</a>！(blog.melichem.cn)',
+  blogLink: '不妨去看看站长的 blog！(blog.melichem.cn)',
 };
 
 const en: I18nStrings = {
@@ -111,7 +111,7 @@ const en: I18nStrings = {
   file: 'File',
   formatLabel: 'Format',
   sourceFormat: 'Source format',
-  blogLink: 'Check out the owner\'s <a href="https://blog.melichem.cn" target="_blank" rel="noopener">blog</a>! (blog.melichem.cn)',
+  blogLink: 'Check out the owner\'s blog! (blog.melichem.cn)',
 };
 
 const ja: I18nStrings = {
