@@ -8,8 +8,10 @@ node_modules/
 dist/*.js
 dist/*.map
 dist/*.wasm
+!dist/ffi.wasm
 tmp/
 .yarn/
 public/*.html
 public/*.js
 public/*.wasm
+!public/ffi.wasm
