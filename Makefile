@@ -1,3 +1,22 @@
+# Copyright 2018 Kenichi Ishibashi (Original Work)
+# Modifications Copyright 2026 MeLi (Li Junjie)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Modified by MeLi (Li Junjie):
+#   - Changed EXTRA_EXPORTED_RUNTIME_METHODS to EXPORTED_RUNTIME_METHODS
+#
+
 CC := emcc
 CXX := emcc
 
@@ -56,7 +75,7 @@ wasm: $(WOFF2_LIB_A) $(BROTLI_LIB_A) ffi.cc
 	emcc $(CXXFLAGS) -I$(WOFF2_DIR)/include ffi.cc -o $(FFI_JS) $(WOFF2_LIB_A) $(BROTLI_LIB_A) \
 	  -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 \
 	  -s EXPORTED_FUNCTIONS='["_malloc", "_free"]' \
-	  -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]'
+	  -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]'
 
 $(OBJDIR)/%.o: %.cc
 	emcc -c -MMD $(CXXFLAGS) -I$(BROTLI_DIR)/c/include -I$(WOFF2_DIR)/include -o $@ $<

@@ -1,12 +1,32 @@
 <!DOCTYPE html>
+<!--
+  Copyright 2018 Kenichi Ishibashi (Original Work)
+  Modifications Copyright 2026 MeLi (Li Junjie)
+
+  Kombu — OpenType/WOFF/WOFF2 Converter
+  Fork: https://github.com/MeLi-55S/kombu
+  Original: https://github.com/bashi/kombu
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
 <html>
 
 <head>
   <meta charset="utf-8">
-  <title>OTF/WOFF/WOFF2 Converter</title>
+  <title>Kombu — Font Converter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="app.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -22,9 +42,9 @@
   </script>
 
   <header>
-    <h1><a href="#">OTF/WOFF/WOFF2 Converter</a></h1>
-    <div>
-      Convert fonts from/to ttf, otf, woff and woff2 without server interaction.
+    <h1><a href="#">Kombu</a></h1>
+    <div class="subtitle">
+      Convert fonts between TTF / OTF / WOFF / WOFF2 — all in your browser, no upload needed.
     </div>
   </header>
 
@@ -32,7 +52,15 @@
     <div id="input-select-zone">
       <div>
         <input id="input-file" type="file" style="display:none" multiple>
-        <button id="select-file-button">Select a font</button>
+        <button id="select-file-button">
+          <!-- Upload icon (inline SVG) -->
+          <svg class="dropzone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+            <path d="M12 11l-4 4h3v4h2v-4h3l-4-4z" fill="currentColor"/>
+          </svg>
+          <span class="dropzone-label">Choose fonts or drop them here</span>
+          <span class="dropzone-hint">Supports .ttf, .otf, .woff, .woff2 — multiple files allowed</span>
+        </button>
       </div>
     </div>
 
@@ -40,7 +68,7 @@
 
     <div id="format-select-container">
       <input type="radio" class="input-radio" id="output-format-otf" name="output-format" value="otf">
-      <label for="output-format-otf">TTF/OTF</label>
+      <label for="output-format-otf">TTF / OTF</label>
       <input type="radio" class="input-radio" id="output-format-woff" name="output-format" value="woff">
       <label for="output-format-woff">WOFF</label>
       <input type="radio" class="input-radio" id="output-format-woff2" name="output-format" value="woff2" checked>
@@ -80,8 +108,21 @@
   </main>
 
   <footer class="container">
-    <span id="version">__VERSION__</span> -
-    <a href="https://github.com/bashi/kombu/issues">File an issue</a>
+    <div class="footer-links">
+      <span id="version">__VERSION__</span>
+      <span class="separator">·</span>
+      <a href="https://github.com/MeLi-55S/kombu/issues">Report issue</a>
+      <span class="separator">·</span>
+      <a href="https://github.com/MeLi-55S/kombu">GitHub</a>
+    </div>
+    <div class="footer-copyright">
+      <span class="fork-label">Fork</span>
+      <a href="https://github.com/MeLi-55S/kombu">meLi-55S/kombu</a> by MeLi (Li Junjie)
+      &middot;
+      Original by <a href="https://github.com/bashi/kombu">Kenichi Ishibashi</a>
+      <br>
+      Licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
+    </div>
   </footer>
 </body>
 
