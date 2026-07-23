@@ -19,15 +19,16 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<html>
+<html lang="zh">
 
 <head>
   <meta charset="utf-8">
-  <title>Kombu — Font Converter</title>
+  <title>Kombu — 字体转换器</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts also support CJK via Noto Sans SC; fallback built into font stack -->
   <script src="app.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -42,24 +43,27 @@
   </script>
 
   <header>
+    <div class="header-top-bar">
+      <button id="lang-toggle" class="lang-toggle" title="切换语言 / Switch language">EN</button>
+    </div>
     <h1><a href="#">Kombu</a></h1>
-    <div class="subtitle">
-      Convert fonts between TTF / OTF / WOFF / WOFF2 — all in your browser, no upload needed.
+    <div class="subtitle" id="subtitle-text">
+      在 TTF / OTF / WOFF / WOFF2 之间互相转换字体，全程在浏览器本地完成，无需上传。
     </div>
   </header>
 
   <main class="container">
     <div id="input-select-zone">
       <div>
-        <input id="input-file" type="file" style="display:none" multiple>
+        <input id="input-file" type="file" style="display:none" multiple accept=".ttf,.otf,.woff,.woff2">
         <button id="select-file-button">
           <!-- Upload icon (inline SVG) -->
-          <svg class="dropzone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg class="dropzone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
             <path d="M12 11l-4 4h3v4h2v-4h3l-4-4z" fill="currentColor"/>
           </svg>
-          <span class="dropzone-label">Choose fonts or drop them here</span>
-          <span class="dropzone-hint">Supports .ttf, .otf, .woff, .woff2 — multiple files allowed</span>
+          <span class="dropzone-label">选择字体文件或将文件拖拽到这里</span>
+          <span class="dropzone-hint">支持 .ttf、.otf、.woff、.woff2 — 可一次选择多个文件</span>
         </button>
       </div>
     </div>
@@ -76,32 +80,32 @@
     </div>
 
     <div id="convert-button-container">
-      <button id="convert-button">Convert</button>
+      <button id="convert-button">开始转换</button>
     </div>
 
     <div id="spinner" class="spinner-off">
       <div style="display: flex; align-items: center">
-        <span>Converting</span>
+        <span id="spinner-text">正在转换</span>
         <!-- https://codepen.io/aurer/pen/jEGbA -->
         <svg version="1.1" id="spinner-icon" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24"
-          style="enable-background:new 0 0 50 50;" xml:space="preserve">
-          <rect x="0" y="2" width="4" height="18" fill="#333">
+          style="enable-background:new 0 0 50 50;" xml:space="preserve" aria-hidden="true">
+          <rect x="0" y="2" width="4" height="18">
             <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="0s" dur="2s"
               repeatCount="indefinite" />
           </rect>
-          <rect x="7" y="2" width="4" height="18" fill="#333">
+          <rect x="7" y="2" width="4" height="18">
             <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="0.6s" dur="2s"
               repeatCount="indefinite" />
           </rect>
-          <rect x="14" y="2" width="4" height="18" fill="#333">
+          <rect x="14" y="2" width="4" height="18">
             <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="1.2s" dur="2s"
               repeatCount="indefinite" />
           </rect>
         </svg>
       </div>
 
-      <div>It may take several minutes when you convert a large font.</div>
+      <div id="spinner-hint">如果转换的字体文件较大，可能需要几分钟时间。</div>
     </div>
     <div id="convert-result-container"></div>
     <div id="error-message-container" class="error-message-off"></div>
@@ -111,17 +115,12 @@
     <div class="footer-links">
       <span id="version">__VERSION__</span>
       <span class="separator">·</span>
-      <a href="https://github.com/MeLi-55S/kombu/issues">Report issue</a>
+      <a id="issue-link" href="https://github.com/MeLi-55S/kombu/issues">反馈问题</a>
       <span class="separator">·</span>
       <a href="https://github.com/MeLi-55S/kombu">GitHub</a>
     </div>
-    <div class="footer-copyright">
-      <span class="fork-label">Fork</span>
-      <a href="https://github.com/MeLi-55S/kombu">meLi-55S/kombu</a> by MeLi (Li Junjie)
-      &middot;
-      Original by <a href="https://github.com/bashi/kombu">Kenichi Ishibashi</a>
-      <br>
-      Licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
+    <div class="footer-copyright" id="footer-copyright">
+      Fork 维护 MeLi (Li Junjie) · 原作 Kenichi Ishibashi · 基于 Apache 2.0 协议开源
     </div>
   </footer>
 </body>

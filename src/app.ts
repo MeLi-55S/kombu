@@ -1,5 +1,21 @@
-import { Format, isValidFormat, getFilenameSuffix } from './format';
+/*
+ * Copyright 2018 Kenichi Ishibashi (Original Work)
+ * Modifications Copyright 2026 MeLi (Li Junjie)
+ *
+ * Kombu — OpenType/WOFF/WOFF2 Converter
+ * Fork: https://github.com/MeLi-55S/kombu
+ * Original: https://github.com/bashi/kombu
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+import { Format, isValidFormat, getFilenameSuffix, getFontFormat } from './format';
 import { convertOnWorker } from './convertworker';
+import { Lang, t, setLang, getLang } from './i18n';
 
 async function fileToUint8Array(file: File): Promise<Uint8Array> {
   const fileReader = new FileReader();
@@ -25,7 +41,7 @@ function createDownloadLink(basename: string, data: Uint8Array): HTMLAnchorEleme
   link.href = url;
   const suffix = getFilenameSuffix(data);
   link.download = `${basename}.${suffix}`;
-  link.innerHTML = `Download ${basename}.${suffix}`;
+  link.textContent = `${t('download')} ${basename}.${suffix}`;
   return link;
 }
 
@@ -63,15 +79,42 @@ function formatProcessTime(t: number): string {
 function formatConversionRatio(before: number, after: number): string {
   const el = document.createElement('span');
   const ratio = (after / before) * 100;
-  el.innerText = ratio.toFixed(1);
+  el.textContent = ratio.toFixed(1) + '%';
   if (ratio < 100) {
-    el.style.color = 'green';
+    el.style.color = 'var(--color-success)';
     el.style.fontWeight = 'bold';
   } else if (ratio > 100) {
-    el.style.color = 'red';
+    el.style.color = 'var(--color-danger)';
     el.style.fontWeight = 'bold';
   }
   return el.outerHTML;
+}
+
+/** Format name for display */
+function formatDisplayName(format: Format): string {
+  switch (format) {
+    case Format.OTF: return 'TTF / OTF';
+    case Format.WOFF: return 'WOFF';
+    case Format.WOFF2: return 'WOFF2';
+    case Format.UNSUPPORTED: return t('unsupported');
+  }
+}
+
+/** Detect font format from raw bytes */
+function detectFormat(data: Uint8Array): Format {
+  try {
+    // Need at least 4 bytes for magic number
+    if (data.byteLength < 4) return Format.UNSUPPORTED;
+    return getFontFormat(data);
+  } catch {
+    return Format.UNSUPPORTED;
+  }
+}
+
+interface FileEntry {
+  file: File;
+  data: Uint8Array;
+  detectedFormat: Format;
 }
 
 // TODO: Avoid a god object.
@@ -83,8 +126,9 @@ class App {
   convertButton: HTMLButtonElement;
   spinnerEl: Element;
   errorMessageEl: Element;
+  langToggle: HTMLButtonElement;
 
-  selectedFiles: FileList | undefined;
+  selectedFiles: FileEntry[] = [];
 
   constructor() {
     const inputFileEl = document.querySelector('#input-file');
@@ -115,6 +159,10 @@ class App {
     if (!errorMessageEl) {
       throw new Error('No error message container');
     }
+    const langToggle = document.querySelector('#lang-toggle');
+    if (!(langToggle instanceof HTMLButtonElement)) {
+      throw new Error('No language toggle element');
+    }
 
     this.inputFileEl = inputFileEl;
     this.selectFileButton = selectFileButton;
@@ -123,19 +171,68 @@ class App {
     this.convertButton = convertButton;
     this.spinnerEl = spinnerEl;
     this.errorMessageEl = errorMessageEl;
+    this.langToggle = langToggle;
 
     this.convertButton.disabled = true;
 
-    this.selectedFiles = undefined;
-
     this.selectFileButton.addEventListener('click', async () => {
       const files = await this.chooseFiles();
-      this.onFilesSelected(files);
+      await this.onFilesSelected(files);
     });
 
     this.convertButton.addEventListener('click', () => {
       this.startConversions();
     });
+
+    this.langToggle.addEventListener('click', () => {
+      const nextLang: Lang = getLang() === 'zh' ? 'en' : 'zh';
+      setLang(nextLang);
+      this.updateLanguage();
+    });
+
+    // Initialize language display
+    this.updateLanguage();
+  }
+
+  private updateLanguage(): void {
+    const lang = getLang();
+    const isZh = lang === 'zh';
+
+    // Update lang attribute
+    document.documentElement.lang = lang;
+
+    // Toggle button text
+    this.langToggle.textContent = isZh ? 'EN' : '中';
+
+    // Static text from template
+    document.title = t('title');
+    this.setText('#subtitle-text', t('subtitle'));
+    this.setText('.dropzone-label', t('dropzoneLabel'));
+    this.setText('.dropzone-hint', t('dropzoneHint'));
+    this.setText('#convert-button', t('convert'));
+    this.setText('#spinner-text', t('converting'));
+    this.setText('#spinner-hint', t('convertHint'));
+
+    // Format radio labels
+    const otfLabel = document.querySelector('label[for="output-format-otf"]');
+    const woffLabel = document.querySelector('label[for="output-format-woff"]');
+    const woff2Label = document.querySelector('label[for="output-format-woff2"]');
+    if (otfLabel) otfLabel.textContent = t('formatOtf');
+    if (woffLabel) woffLabel.textContent = t('formatWoff');
+    if (woff2Label) woff2Label.textContent = t('formatWoff2');
+
+    // Footer links
+    const issueLink = document.querySelector('#issue-link');
+    if (issueLink) issueLink.textContent = t('reportIssue');
+    this.setText('#footer-copyright', `${t('forkBy')} MeLi (Li Junjie) · ${t('originalBy')} Kenichi Ishibashi · ${t('license')}`);
+
+    // Re-render file list with current language
+    this.renderFileList();
+  }
+
+  private setText(selector: string, text: string): void {
+    const el = document.querySelector(selector);
+    if (el) el.textContent = text;
   }
 
   private async chooseFiles(): Promise<FileList> {
@@ -153,22 +250,70 @@ class App {
     });
   }
 
-  private onFilesSelected(files: FileList) {
-    this.selectedFontInfoEl.innerHTML = '';
+  private async onFilesSelected(files: FileList) {
+    this.selectedFiles = [];
 
-    for (let file of files) {
-      const fileSize = formatFilesize(file.size);
-      let el = document.createElement('div');
-      el.innerHTML = `${file.name} (${fileSize})`;
+    // Read all files and detect formats
+    const entries: FileEntry[] = [];
+    for (const file of files) {
+      try {
+        const data = await fileToUint8Array(file);
+        const detectedFormat = detectFormat(data);
+        entries.push({ file, data, detectedFormat });
+      } catch {
+        entries.push({ file, data: new Uint8Array(0), detectedFormat: Format.UNSUPPORTED });
+      }
+    }
+
+    this.selectedFiles = entries;
+    this.renderFileList();
+
+    // Enable convert button only if at least one valid font is detected
+    const hasValid = entries.some(e => e.detectedFormat !== Format.UNSUPPORTED && e.data.byteLength >= 4);
+    this.convertButton.disabled = !hasValid;
+  }
+
+  private renderFileList(): void {
+    this.selectedFontInfoEl.innerHTML = '';
+    const hasAny = this.selectedFiles.length > 0;
+
+    for (const entry of this.selectedFiles) {
+      const fileSize = formatFilesize(entry.file.size);
+      const isValid = entry.detectedFormat !== Format.UNSUPPORTED && entry.data.byteLength >= 4;
+
+      const el = document.createElement('div');
+      el.className = 'file-info-item';
+
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'file-info-name';
+      nameSpan.textContent = entry.file.name;
+
+      const metaSpan = document.createElement('span');
+      metaSpan.className = 'file-info-meta';
+      metaSpan.textContent = `(${fileSize})`;
+
+      const badge = document.createElement('span');
+      if (isValid) {
+        badge.className = 'file-info-badge badge-ok';
+        badge.textContent = `${t('detected')}: ${formatDisplayName(entry.detectedFormat)}`;
+      } else {
+        badge.className = 'file-info-badge badge-err';
+        badge.textContent = t('unsupported');
+      }
+
+      el.appendChild(nameSpan);
+      el.appendChild(metaSpan);
+      el.appendChild(badge);
       this.selectedFontInfoEl.appendChild(el);
     }
 
-    this.selectedFiles = files;
-    this.convertButton.disabled = false;
+    if (!hasAny && this.convertButton.disabled) {
+      this.selectedFontInfoEl.innerHTML = '';
+    }
   }
 
   private async startConversions() {
-    if (this.selectedFiles === undefined) return;
+    if (this.selectedFiles.length === 0) return;
 
     const outputFormatEl = document.querySelector('input[name=output-format]:checked');
     if (!(outputFormatEl instanceof HTMLInputElement)) {
@@ -180,6 +325,17 @@ class App {
       throw new Error(`Invalid font format: ${format}`);
     }
 
+    // Filter out unsupported files
+    const validFiles = this.selectedFiles.filter(
+      e => e.detectedFormat !== Format.UNSUPPORTED && e.data.byteLength >= 4
+    );
+
+    if (validFiles.length === 0) {
+      this.errorMessageEl.textContent = t('noValidFonts');
+      this.errorMessageEl.classList.remove('error-message-off');
+      return;
+    }
+
     this.convertButton.disabled = true;
 
     // Clear conversion status.
@@ -189,12 +345,12 @@ class App {
     this.spinnerEl.classList.remove('spinner-off');
 
     try {
-      for (let file of this.selectedFiles) {
-        await this.convertSingleFile(file, format);
+      for (let entry of validFiles) {
+        await this.convertSingleFile(entry, format);
       }
     } catch (exception) {
       console.error(exception);
-      this.errorMessageEl.innerHTML = exception.message;
+      this.errorMessageEl.textContent = exception.message;
       this.errorMessageEl.classList.remove('error-message-off');
       this.convertResultEl.innerHTML = '';
     } finally {
@@ -203,8 +359,8 @@ class App {
     }
   }
 
-  private async convertSingleFile(file: File, format: Format) {
-    const data = await fileToUint8Array(file);
+  private async convertSingleFile(entry: FileEntry, format: Format) {
+    const data = entry.data;
     const originalByteLength = data.byteLength;
     const result = await convertOnWorker(data, format);
     const output = result.output;
@@ -217,13 +373,17 @@ class App {
     const summaryEl = document.createElement('div');
     summaryEl.classList.add('convert-summary');
 
+    const sourceLabel = formatDisplayName(entry.detectedFormat);
+    const targetLabel = formatDisplayName(format as Format);
+
     summaryEl.innerHTML = `
-    <div>Size comparison: ${originalFileSize} → ${convertedFileSize} (${ratio}%)</div>
-    <div>Process time: ${processTime}</div>
+    <div>${entry.file.name} — ${sourceLabel} → ${targetLabel}</div>
+    <div>${t('sizeComparison')}: ${originalFileSize} → ${convertedFileSize} (${ratio})</div>
+    <div>${t('processTime')}: ${processTime}</div>
     `;
     this.convertResultEl.appendChild(summaryEl);
 
-    const basename = getBasename(file.name);
+    const basename = getBasename(entry.file.name);
     const link = createDownloadLink(basename, output);
     this.convertResultEl.appendChild(link);
   }
