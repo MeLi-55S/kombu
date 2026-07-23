@@ -23,12 +23,61 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Kombu — 字体转换器</title>
+
+  <!-- Primary Meta Tags -->
+  <title>MeLi Kombu — 在线字体格式转换工具 TTF/OTF/WOFF/WOFF2</title>
+  <meta name="description" content="Kombu 是一款在线字体格式转换工具，支持 TTF、OTF、WOFF、WOFF2 四种字体格式的相互转换。所有转换在浏览器本地完成，无需上传，保障隐私安全。">
+  <meta name="keywords" content="字体转换, font converter, TTF转WOFF, OTF转WOFF2, WOFF转TTF, 在线字体工具, 字体格式转换, OpenType, WebFont">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kombu.3269910258.workers.dev/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MeLi Kombu — 在线字体格式转换工具">
+  <meta property="og:description" content="TTF / OTF / WOFF / WOFF2 字体格式互转，纯浏览器端处理，无需上传。">
+  <meta property="og:url" content="https://kombu.3269910258.workers.dev/">
+
+  <!-- Hreflang (alternate language URLs — same page, different lang) -->
+  <link rel="alternate" hreflang="zh" href="https://kombu.3269910258.workers.dev/">
+  <link rel="alternate" hreflang="en" href="https://kombu.3269910258.workers.dev/">
+  <link rel="alternate" hreflang="ja" href="https://kombu.3269910258.workers.dev/">
+  <link rel="alternate" hreflang="es" href="https://kombu.3269910258.workers.dev/">
+  <link rel="alternate" hreflang="fr" href="https://kombu.3269910258.workers.dev/">
+  <link rel="alternate" hreflang="de" href="https://kombu.3269910258.workers.dev/">
+  <link rel="alternate" hreflang="pt" href="https://kombu.3269910258.workers.dev/">
+  <link rel="alternate" hreflang="ko" href="https://kombu.3269910258.workers.dev/">
+  <link rel="alternate" hreflang="x-default" href="https://kombu.3269910258.workers.dev/">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "MeLi Kombu",
+    "alternateName": "Kombu Font Converter",
+    "description": "在线字体格式转换工具，支持 TTF、OTF、WOFF、WOFF2 四种字体格式转换，全部在浏览器本地完成。",
+    "url": "https://kombu.3269910258.workers.dev/",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires WebAssembly and Web Workers support",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "MeLi (Li Junjie)",
+      "url": "https://github.com/MeLi-55S"
+    }
+  }
+  </script>
+
+  <!-- Fonts & Viewport -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Google Fonts also support CJK via Noto Sans SC; fallback built into font stack -->
   <script src="app.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -44,9 +93,18 @@
 
   <header>
     <div class="header-top-bar">
-      <select id="lang-toggle" class="lang-toggle" title="切换语言 / Switch language"></select>
+      <select id="lang-toggle" class="lang-toggle" title="切换语言 / Switch language">
+        <option value="zh">中文</option>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="pt">Português</option>
+        <option value="ko">한국어</option>
+      </select>
     </div>
-    <h1><a href="#">Kombu</a></h1>
+    <h1><a href="#">MeLi Kombu</a></h1>
     <div class="subtitle" id="subtitle-text">
       在 TTF / OTF / WOFF / WOFF2 之间互相转换字体，全程在浏览器本地完成，无需上传。
     </div>
@@ -57,7 +115,6 @@
       <div>
         <input id="input-file" type="file" style="display:none" multiple accept=".ttf,.otf,.woff,.woff2">
         <button id="select-file-button">
-          <!-- Upload icon (inline SVG) -->
           <svg class="dropzone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
             <path d="M12 11l-4 4h3v4h2v-4h3l-4-4z" fill="currentColor"/>
@@ -86,7 +143,6 @@
     <div id="spinner" class="spinner-off">
       <div style="display: flex; align-items: center">
         <span id="spinner-text">正在转换</span>
-        <!-- https://codepen.io/aurer/pen/jEGbA -->
         <svg version="1.1" id="spinner-icon" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24"
           style="enable-background:new 0 0 50 50;" xml:space="preserve" aria-hidden="true">

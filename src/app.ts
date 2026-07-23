@@ -15,7 +15,7 @@
 
 import { Format, isValidFormat, getFilenameSuffix, getFontFormat } from './format';
 import { convertOnWorker } from './convertworker';
-import { Lang, LANGUAGES, t, setLang, getLang } from './i18n';
+import { Lang, t, setLang, getLang } from './i18n';
 
 async function fileToUint8Array(file: File): Promise<Uint8Array> {
   const fileReader = new FileReader();
@@ -183,14 +183,6 @@ class App {
     this.convertButton.addEventListener('click', () => {
       this.startConversions();
     });
-
-    // Populate language dropdown
-    for (const opt of LANGUAGES) {
-      const option = document.createElement('option');
-      option.value = opt.code;
-      option.textContent = opt.label;
-      this.langToggle.appendChild(option);
-    }
 
     this.langToggle.addEventListener('change', () => {
       setLang(this.langToggle.value as Lang);
