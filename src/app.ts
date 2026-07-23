@@ -15,7 +15,7 @@
 
 import { Format, isValidFormat, getFilenameSuffix, getFontFormat } from './format';
 import { convertOnWorker } from './convertworker';
-import { Lang, t, setLang, getLang } from './i18n';
+import { Lang, LANGUAGES, t, setLang, getLang } from './i18n';
 
 async function fileToUint8Array(file: File): Promise<Uint8Array> {
   const fileReader = new FileReader();
@@ -126,7 +126,7 @@ class App {
   convertButton: HTMLButtonElement;
   spinnerEl: Element;
   errorMessageEl: Element;
-  langToggle: HTMLButtonElement;
+  langToggle: HTMLSelectElement;
 
   selectedFiles: FileEntry[] = [];
 
@@ -160,7 +160,7 @@ class App {
       throw new Error('No error message container');
     }
     const langToggle = document.querySelector('#lang-toggle');
-    if (!(langToggle instanceof HTMLButtonElement)) {
+    if (!(langToggle instanceof HTMLSelectElement)) {
       throw new Error('No language toggle element');
     }
 
@@ -184,9 +184,16 @@ class App {
       this.startConversions();
     });
 
-    this.langToggle.addEventListener('click', () => {
-      const nextLang: Lang = getLang() === 'zh' ? 'en' : 'zh';
-      setLang(nextLang);
+    // Populate language dropdown
+    for (const opt of LANGUAGES) {
+      const option = document.createElement('option');
+      option.value = opt.code;
+      option.textContent = opt.label;
+      this.langToggle.appendChild(option);
+    }
+
+    this.langToggle.addEventListener('change', () => {
+      setLang(this.langToggle.value as Lang);
       this.updateLanguage();
     });
 
@@ -196,13 +203,12 @@ class App {
 
   private updateLanguage(): void {
     const lang = getLang();
-    const isZh = lang === 'zh';
 
     // Update lang attribute
     document.documentElement.lang = lang;
 
-    // Toggle button text
-    this.langToggle.textContent = isZh ? 'EN' : '中';
+    // Sync dropdown value
+    this.langToggle.value = lang;
 
     // Static text from template
     document.title = t('title');

@@ -188,25 +188,40 @@ header .subtitle {
   /* Remove opacity for better contrast on dark background */
 }
 
-/* Language toggle button */
+/* Language toggle select */
 .lang-toggle {
   background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-sm);
-  padding: 0.25rem 0.65rem;
+  padding: 0.25rem 0.5rem;
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 600;
   font-family: var(--font-sans);
   cursor: pointer;
   transition: all 0.2s ease;
   line-height: 1.4;
-  letter-spacing: 0.03em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(255,255,255,0.7)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 1.5rem;
+  min-width: 70px;
+  text-align: center;
+  text-align-last: center;
 }
 
 .lang-toggle:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.5);
+}
+
+.lang-toggle option {
+  color: #1a1a2e;
+  background: #ffffff;
+  text-align: left;
 }
 
 
