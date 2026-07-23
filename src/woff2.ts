@@ -1,5 +1,5 @@
 // @ts-ignore
-import * as Module from '../dist/ffi.js';
+import Module from '../dist/ffi.js';
 
 // TODO: More error handling?
 
