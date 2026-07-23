@@ -74,15 +74,7 @@ export class Woff2 {
   }
 }
 
-export function createWoff2(wasmBinary: Uint8Array): Promise<Woff2> {
-  return new Promise((resolve, reject) => {
-    let mod: any = null;
-    const args = {
-      wasmBinary: wasmBinary,
-      onRuntimeInitialized: () => {
-        resolve(new Woff2(mod));
-      }
-    };
-    mod = new Module(args);
-  });
+export async function createWoff2(wasmBinary: Uint8Array): Promise<Woff2> {
+  const mod = await Module({ wasmBinary });
+  return new Woff2(mod);
 }
