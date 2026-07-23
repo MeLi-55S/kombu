@@ -6,6 +6,7 @@ out/
 *.o
 node_modules/
 dist/*.js
+!dist/ffi.js
 dist/*.map
 dist/*.wasm
 !dist/ffi.wasm
