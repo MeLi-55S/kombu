@@ -12,7 +12,7 @@
  *     http://www.apache.org/licenses/LICENSE-2.0
  */
 
-export type Lang = 'zh' | 'en' | 'ja' | 'es' | 'fr' | 'de' | 'pt' | 'ko';
+export type Lang = 'zh' | 'en' | 'ja' | 'es' | 'fr' | 'de' | 'pt' | 'ko' | 'it' | 'ru' | 'vi' | 'th' | 'pl' | 'tr';
 
 export interface LangOption {
   code: Lang;
@@ -28,6 +28,12 @@ export const LANGUAGES: LangOption[] = [
   { code: 'de', label: 'Deutsch' },
   { code: 'pt', label: 'Português' },
   { code: 'ko', label: '한국어' },
+  { code: 'it', label: 'Italiano' },
+  { code: 'ru', label: 'Русский' },
+  { code: 'vi', label: 'Tiếng Việt' },
+  { code: 'th', label: 'ไทย' },
+  { code: 'pl', label: 'Polski' },
+  { code: 'tr', label: 'Türkçe' },
 ];
 
 export interface I18nStrings {
@@ -282,7 +288,175 @@ const ko: I18nStrings = {
   sourceFormat: '원본 형식',
 };
 
-const strings: Record<Lang, I18nStrings> = { zh, en, ja, es, fr, de, pt, ko };
+const it: I18nStrings = {
+  title: 'MeLi Kombu',
+  subtitle: 'Converti font tra TTF / OTF / WOFF / WOFF2 — tutto nel tuo browser, senza bisogno di caricare file.',
+  dropzoneLabel: 'Seleziona file di font o trascinali qui',
+  dropzoneHint: 'Supporta .ttf, .otf, .woff, .woff2 — file multipli consentiti',
+  formatOtf: 'TTF / OTF',
+  formatWoff: 'WOFF',
+  formatWoff2: 'WOFF2',
+  convert: 'Converti',
+  converting: 'Conversione in corso',
+  convertHint: 'Potrebbero volerci alcuni minuti per font di grandi dimensioni.',
+  sizeComparison: 'Confronto dimensioni',
+  processTime: 'Tempo di elaborazione',
+  download: 'Scarica',
+  downloadAll: 'Scarica tutto (ZIP)',
+  reportIssue: 'Segnala problema',
+  forkBy: 'Fork di',
+  originalBy: 'Originale di',
+  license: 'Licenza Apache 2.0',
+  detected: 'Rilevato',
+  unsupported: 'Non supportato',
+  noValidFonts: 'Nessun file di font valido da convertire',
+  blogLink: 'Visita anche il blog del proprietario! (blog.melichem.cn)',
+  file: 'File',
+  formatLabel: 'Formato',
+  sourceFormat: 'Formato sorgente',
+};
+
+const ru: I18nStrings = {
+  title: 'MeLi Kombu',
+  subtitle: 'Конвертируйте шрифты между TTF / OTF / WOFF / WOFF2 — всё в браузере, без загрузки на сервер.',
+  dropzoneLabel: 'Выберите файлы шрифтов или перетащите их сюда',
+  dropzoneHint: 'Поддерживает .ttf, .otf, .woff, .woff2 — несколько файлов',
+  formatOtf: 'TTF / OTF',
+  formatWoff: 'WOFF',
+  formatWoff2: 'WOFF2',
+  convert: 'Конвертировать',
+  converting: 'Конвертация',
+  convertHint: 'Для больших шрифтов может потребоваться несколько минут.',
+  sizeComparison: 'Сравнение размеров',
+  processTime: 'Время обработки',
+  download: 'Скачать',
+  downloadAll: 'Скачать всё (ZIP)',
+  reportIssue: 'Сообщить о проблеме',
+  forkBy: 'Форк от',
+  originalBy: 'Оригинал от',
+  license: 'Лицензия Apache 2.0',
+  detected: 'Обнаружен',
+  unsupported: 'Не поддерживается',
+  noValidFonts: 'Нет подходящих файлов шрифтов для конвертации',
+  blogLink: 'Загляните в блог владельца! (blog.melichem.cn)',
+  file: 'Файл',
+  formatLabel: 'Формат',
+  sourceFormat: 'Исходный формат',
+};
+
+const vi: I18nStrings = {
+  title: 'MeLi Kombu',
+  subtitle: 'Chuyển đổi phông chữ giữa TTF / OTF / WOFF / WOFF2 — tất cả trong trình duyệt, không cần tải lên.',
+  dropzoneLabel: 'Chọn tệp phông chữ hoặc kéo thả vào đây',
+  dropzoneHint: 'Hỗ trợ .ttf, .otf, .woff, .woff2 — cho phép nhiều tệp',
+  formatOtf: 'TTF / OTF',
+  formatWoff: 'WOFF',
+  formatWoff2: 'WOFF2',
+  convert: 'Chuyển đổi',
+  converting: 'Đang chuyển đổi',
+  convertHint: 'Có thể mất vài phút khi chuyển đổi phông chữ lớn.',
+  sizeComparison: 'So sánh kích thước',
+  processTime: 'Thời gian xử lý',
+  download: 'Tải xuống',
+  downloadAll: 'Tải tất cả (ZIP)',
+  reportIssue: 'Báo cáo vấn đề',
+  forkBy: 'Fork bởi',
+  originalBy: 'Bản gốc bởi',
+  license: 'Giấy phép Apache 2.0',
+  detected: 'Đã phát hiện',
+  unsupported: 'Không hỗ trợ',
+  noValidFonts: 'Không có tệp phông chữ hợp lệ để chuyển đổi',
+  blogLink: 'Ghé thăm blog của chủ sở hữu! (blog.melichem.cn)',
+  file: 'Tệp',
+  formatLabel: 'Định dạng',
+  sourceFormat: 'Định dạng nguồn',
+};
+
+const th: I18nStrings = {
+  title: 'MeLi Kombu',
+  subtitle: 'แปลงฟอนต์ระหว่าง TTF / OTF / WOFF / WOFF2 — ทั้งหมดในเบราว์เซอร์ของคุณ ไม่ต้องอัปโหลด',
+  dropzoneLabel: 'เลือกไฟล์ฟอนต์หรือลากมาวางที่นี่',
+  dropzoneHint: 'รองรับ .ttf, .otf, .woff, .woff2 — เลือกหลายไฟล์ได้',
+  formatOtf: 'TTF / OTF',
+  formatWoff: 'WOFF',
+  formatWoff2: 'WOFF2',
+  convert: 'แปลง',
+  converting: 'กำลังแปลง',
+  convertHint: 'อาจใช้เวลาหลายนาทีเมื่อแปลงฟอนต์ขนาดใหญ่',
+  sizeComparison: 'เปรียบเทียบขนาด',
+  processTime: 'เวลาที่ใช้',
+  download: 'ดาวน์โหลด',
+  downloadAll: 'ดาวน์โหลดทั้งหมด (ZIP)',
+  reportIssue: 'รายงานปัญหา',
+  forkBy: 'Fork โดย',
+  originalBy: 'ต้นฉบับโดย',
+  license: 'สัญญาอนุญาต Apache 2.0',
+  detected: 'ตรวจพบ',
+  unsupported: 'ไม่รองรับ',
+  noValidFonts: 'ไม่มีไฟล์ฟอนต์ที่ถูกต้องสำหรับการแปลง',
+  blogLink: 'ลองดูบล็อกของผู้ดูแลสิ! (blog.melichem.cn)',
+  file: 'ไฟล์',
+  formatLabel: 'รูปแบบ',
+  sourceFormat: 'รูปแบบต้นทาง',
+};
+
+const pl: I18nStrings = {
+  title: 'MeLi Kombu',
+  subtitle: 'Konwertuj czcionki między TTF / OTF / WOFF / WOFF2 — wszystko w przeglądarce, bez wysyłania plików.',
+  dropzoneLabel: 'Wybierz pliki czcionek lub przeciągnij je tutaj',
+  dropzoneHint: 'Obsługuje .ttf, .otf, .woff, .woff2 — wiele plików',
+  formatOtf: 'TTF / OTF',
+  formatWoff: 'WOFF',
+  formatWoff2: 'WOFF2',
+  convert: 'Konwertuj',
+  converting: 'Konwersja',
+  convertHint: 'Może to zająć kilka minut w przypadku dużej czcionki.',
+  sizeComparison: 'Porównanie rozmiarów',
+  processTime: 'Czas przetwarzania',
+  download: 'Pobierz',
+  downloadAll: 'Pobierz wszystko (ZIP)',
+  reportIssue: 'Zgłoś problem',
+  forkBy: 'Fork od',
+  originalBy: 'Oryginał od',
+  license: 'Licencja Apache 2.0',
+  detected: 'Wykryto',
+  unsupported: 'Nieobsługiwany',
+  noValidFonts: 'Brak prawidłowych plików czcionek do konwersji',
+  blogLink: 'Zajrzyj na blog właściciela! (blog.melichem.cn)',
+  file: 'Plik',
+  formatLabel: 'Format',
+  sourceFormat: 'Format źródłowy',
+};
+
+const tr: I18nStrings = {
+  title: 'MeLi Kombu',
+  subtitle: 'Yazı tiplerini TTF / OTF / WOFF / WOFF2 arasında dönüştürün — tamamen tarayıcınızda, yükleme gerektirmez.',
+  dropzoneLabel: 'Yazı tipi dosyalarını seçin veya buraya sürükleyin',
+  dropzoneHint: '.ttf, .otf, .woff, .woff2 destekler — birden çok dosya',
+  formatOtf: 'TTF / OTF',
+  formatWoff: 'WOFF',
+  formatWoff2: 'WOFF2',
+  convert: 'Dönüştür',
+  converting: 'Dönüştürülüyor',
+  convertHint: 'Büyük bir yazı tipini dönüştürürken birkaç dakika sürebilir.',
+  sizeComparison: 'Boyut karşılaştırması',
+  processTime: 'İşlem süresi',
+  download: 'İndir',
+  downloadAll: 'Tümünü indir (ZIP)',
+  reportIssue: 'Sorun bildir',
+  forkBy: 'Fork:',
+  originalBy: 'Orijinal:',
+  license: 'Apache 2.0 Lisansı',
+  detected: 'Algılandı',
+  unsupported: 'Desteklenmiyor',
+  noValidFonts: 'Dönüştürülecek geçerli yazı tipi dosyası yok',
+  blogLink: 'Sahibinin bloguna da göz atın! (blog.melichem.cn)',
+  file: 'Dosya',
+  formatLabel: 'Biçim',
+  sourceFormat: 'Kaynak biçim',
+};
+
+const strings: Record<Lang, I18nStrings> = { zh, en, ja, es, fr, de, pt, ko, it, ru, vi, th, pl, tr };
 
 let currentLang: Lang = 'zh';
 

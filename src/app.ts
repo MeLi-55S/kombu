@@ -205,7 +205,7 @@ class App {
     // Read language from URL query (?lang=xx)
     const urlParams = new URLSearchParams(window.location.search);
     const urlLang = urlParams.get('lang') as Lang | null;
-    if (urlLang && ['zh','en','ja','es','fr','de','pt','ko'].includes(urlLang)) {
+    if (urlLang && ['zh','en','ja','es','fr','de','pt','ko','it','ru','vi','th','pl','tr'].includes(urlLang)) {
       setLang(urlLang);
     }
 
