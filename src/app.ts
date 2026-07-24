@@ -202,6 +202,13 @@ class App {
       this.downloadAllAsZip();
     });
 
+    // Read language from URL query (?lang=xx)
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang') as Lang | null;
+    if (urlLang && ['zh','en','ja','es','fr','de','pt','ko'].includes(urlLang)) {
+      setLang(urlLang);
+    }
+
     // Initialize language display
     this.updateLanguage();
   }
@@ -211,6 +218,13 @@ class App {
 
     // Update lang attribute
     document.documentElement.lang = lang;
+
+    // Sync URL with language parameter (for multi-language SEO)
+    const url = new URL(window.location.href);
+    if (url.searchParams.get('lang') !== lang) {
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url.toString());
+    }
 
     // Sync dropdown value
     this.langToggle.value = lang;
