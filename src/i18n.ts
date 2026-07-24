@@ -289,7 +289,7 @@ const ko: I18nStrings = {
 };
 
 const it: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Convertitore di Font Online Gratuito (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Converti font tra TTF / OTF / WOFF / WOFF2 — tutto nel tuo browser, senza bisogno di caricare file.',
   dropzoneLabel: 'Seleziona file di font o trascinali qui',
   dropzoneHint: 'Supporta .ttf, .otf, .woff, .woff2 — file multipli consentiti',
@@ -317,7 +317,7 @@ const it: I18nStrings = {
 };
 
 const ru: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Бесплатный онлайн конвертер шрифтов (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Конвертируйте шрифты между TTF / OTF / WOFF / WOFF2 — всё в браузере, без загрузки на сервер.',
   dropzoneLabel: 'Выберите файлы шрифтов или перетащите их сюда',
   dropzoneHint: 'Поддерживает .ttf, .otf, .woff, .woff2 — несколько файлов',
@@ -345,7 +345,7 @@ const ru: I18nStrings = {
 };
 
 const vi: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Công cụ chuyển đổi phông chữ trực tuyến miễn phí (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Chuyển đổi phông chữ giữa TTF / OTF / WOFF / WOFF2 — tất cả trong trình duyệt, không cần tải lên.',
   dropzoneLabel: 'Chọn tệp phông chữ hoặc kéo thả vào đây',
   dropzoneHint: 'Hỗ trợ .ttf, .otf, .woff, .woff2 — cho phép nhiều tệp',
@@ -373,7 +373,7 @@ const vi: I18nStrings = {
 };
 
 const th: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — เครื่องมือแปลงฟอนต์ออนไลน์ฟรี (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'แปลงฟอนต์ระหว่าง TTF / OTF / WOFF / WOFF2 — ทั้งหมดในเบราว์เซอร์ของคุณ ไม่ต้องอัปโหลด',
   dropzoneLabel: 'เลือกไฟล์ฟอนต์หรือลากมาวางที่นี่',
   dropzoneHint: 'รองรับ .ttf, .otf, .woff, .woff2 — เลือกหลายไฟล์ได้',
@@ -401,7 +401,7 @@ const th: I18nStrings = {
 };
 
 const pl: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Darmowy konwerter czcionek online (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Konwertuj czcionki między TTF / OTF / WOFF / WOFF2 — wszystko w przeglądarce, bez wysyłania plików.',
   dropzoneLabel: 'Wybierz pliki czcionek lub przeciągnij je tutaj',
   dropzoneHint: 'Obsługuje .ttf, .otf, .woff, .woff2 — wiele plików',
@@ -429,7 +429,7 @@ const pl: I18nStrings = {
 };
 
 const tr: I18nStrings = {
-  title: 'MeLi Kombu',
+  title: 'MeLi Kombu — Ücretsiz Çevrimiçi Yazı Tipi Dönüştürücü (TTF/OTF/WOFF/WOFF2)',
   subtitle: 'Yazı tiplerini TTF / OTF / WOFF / WOFF2 arasında dönüştürün — tamamen tarayıcınızda, yükleme gerektirmez.',
   dropzoneLabel: 'Yazı tipi dosyalarını seçin veya buraya sürükleyin',
   dropzoneHint: '.ttf, .otf, .woff, .woff2 destekler — birden çok dosya',
